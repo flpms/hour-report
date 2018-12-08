@@ -1,0 +1,11 @@
+{
+  "name": "hour-report",
+  "version": "0.0.1",
+  "description": "an easy way to save hour reports",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha **.test.js"
+  },
+  "author": "Filipe M. Silva",
+  "license": "MIT"
+}
