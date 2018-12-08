@@ -2,10 +2,14 @@
   "name": "hour-report",
   "version": "0.0.1",
   "description": "an easy way to save hour reports",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "mocha **.test.js"
+    "test": "mocha **.test.js",
+    "start": "electron ."
   },
   "author": "Filipe M. Silva",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^3.0.10"
+  }
 }
