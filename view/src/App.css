@@ -1,1 +1,14 @@
 .app { margin-bottom: 2rem; }
+
+.container { margin-top: 1rem; }
+
+.not-found {
+  font-size: 13rem;
+  margin: 5% auto;
+  text-align: center;
+  width: 80%
+}
+
+.navbar span.navbar-brand, .navbar .nav-item > span.nav-link {
+  cursor: pointer;
+}
