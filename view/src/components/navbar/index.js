@@ -10,42 +10,37 @@ class NavBar extends Component {
   render() {
     return (
       <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-        <a href="#"
-            className="navbar-brand"
-            onClick={e => this.changeRoute('home', e)}
-            >
-            Secretary Assistent
-        </a>
+        <span className="navbar-brand" onClick={e => this.changeRoute('home', e)}>
+          Secretary Assistent
+        </span>
 
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button className="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                >
           <span className="navbar-toggler-icon"></span>
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a href="#"
-                  className="nav-link"
-                  onClick={e => this.changeRoute('hours', e)}
-                  >
-                  Horas
-              </a>
+              <span className="nav-link" onClick={e => this.changeRoute('hours', e)}>
+                Horas
+              </span>
             </li>
             <li className="nav-item">
-              <a href="#"
-                  className="nav-link"
-                  onClick={e => this.changeRoute('publishers', e)}
-                  >
-                  Publicadores
-              </a>
+              <span className="nav-link" onClick={e => this.changeRoute('publishers', e)}>
+                Publicadores
+              </span>
             </li>
             <li className="nav-item">
-              <a href="#"
-                  className="nav-link"
-                  onClick={e => this.changeRoute('addPublishers', e)}
-                  >
-                  Cadastrar Publicadores
-              </a>
+              <span className="nav-link" onClick={e => this.changeRoute('addPublishers', e)}>
+                Cadastrar Publicadores
+              </span>
             </li>
           </ul>
         </div>
