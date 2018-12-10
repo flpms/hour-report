@@ -2,21 +2,25 @@ import React, { Component } from 'react';
 
 import InputContainer from './../../commons/input-container/index.js';
 
+const electron = window.require('electron');
+
 class CreatePublisher extends Component {
 
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {};
+
+    this.ipc = electron.ipcRenderer;
   }
 
   handleSubmit(evt) {
     console.log(this.state);
+    this.ipc.send('create-publisher', JSON.stringify(this.state));
     evt.preventDefault();
   }
 
   handleInputChange(key, value) {
-    console.log(key, value);
     this.setState({[key]: value});
   }
 
@@ -39,20 +43,26 @@ class CreatePublisher extends Component {
               <div className="form-group">
                 <div className="form-check form-check-inline">
                   <input className="form-check-input"
+                          id="male-sex"
                           type="radio"
                           value="m"
                           name="sex"
-                          />
-                  <label className="form-check-label">Masculino</label>
+                          onChange={
+                            e => this.handleInputChange.apply(this, ['publisher-sex', e.target.value])
+                          }/>
+                  <label className="form-check-label" htmlFor="male-sex">Masculino</label>
                 </div>
 
                 <div className="form-check form-check-inline">
                   <input className="form-check-input"
+                          id="female-sex"
                           type="radio"
                           value="f"
                           name="sex"
-                          />
-                  <label className="form-check-label">Feminino</label>
+                          onChange={
+                            e => this.handleInputChange.apply(this, ['publisher-sex', e.target.value])
+                          }/>
+                  <label className="form-check-label" htmlFor="female-sex">Feminino</label>
                 </div>
               </div>
             </div>
@@ -107,7 +117,9 @@ class CreatePublisher extends Component {
                         type="radio"
                         value="true"
                         name="os"
-                        />
+                        onChange={
+                          e => this.handleInputChange.apply(this, ['other-sheep', e.target.value])
+                        }/>
                 <label className="form-check-label">Ungido</label>
               </div>
 
@@ -116,7 +128,9 @@ class CreatePublisher extends Component {
                         type="radio"
                         value="false"
                         name="os"
-                        />
+                        onChange={
+                          e => this.handleInputChange.apply(this, ['other-sheep', e.target.value])
+                        }/>
                 <label className="form-check-label">Outras Ovelhas</label>
               </div>
             </div>
@@ -129,7 +143,9 @@ class CreatePublisher extends Component {
                           type="checkbox"
                           value="regular-pionner"
                           name="ps"
-                          />
+                          onChange={
+                            e => this.handleInputChange.apply(this, ['regular-pionner', e.target.checked])
+                          }/>
                   <label className="form-check-label">Pioneiro Regular</label>
                 </div>
 
@@ -138,7 +154,9 @@ class CreatePublisher extends Component {
                           type="checkbox"
                           value="ministerial-servant"
                           name="ps"
-                          />
+                          onChange={
+                            e => this.handleInputChange.apply(this, ['ministerial-servant', e.target.checked])
+                          }/>
                   <label className="form-check-label">Servo Ministerial</label>
                 </div>
 
@@ -147,7 +165,9 @@ class CreatePublisher extends Component {
                           type="checkbox"
                           value="elder"
                           name="ps"
-                          />
+                          onChange={
+                            e => this.handleInputChange.apply(this, ['elder', e.target.checked])
+                          }/>
                   <label className="form-check-label">Ancião</label>
                 </div>
               </div>
