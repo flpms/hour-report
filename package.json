@@ -10,6 +10,10 @@
   "author": "Filipe M. Silva",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^3.0.10"
+    "electron": "^3.0.10",
+    "electron-rebuild": "^1.8.2"
+  },
+  "dependencies": {
+    "sqlite3": "^4.0.4"
   }
 }
