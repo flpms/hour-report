@@ -11,7 +11,7 @@ class Messages {
   listener(key) {
     return new Promise(resolve => {
       this.ipc.on(key, (evt, data) => {
-        resolve(data);
+        resolve(JSON.parse(data));
       });
     });
   }
