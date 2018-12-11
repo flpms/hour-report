@@ -1,15 +1,43 @@
 'use strict';
 
-const sqlite3 = require('sqlite3');
+const DBConnection = require('../../services/DBCONN.js');
 
-class CreatePublisherModel {
+class PublisherModel {
 
-  create(valus) {
-    const db = new sqlite3.Database('../../file.db');
-    db.serialize(() => {
-      db.run('INSERT INTO Publishers VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', values);
+  constructor() {
+    this.openConnection();
+  }
+
+  openConnection() {
+    this.db = new DBConnection().openConnection();
+  }
+
+  create(values) {
+    console.log(values);
+    this.db.serialize(() => {
+      this.db.run('INSERT INTO publishers VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', values);
+    });
+
+    // this.db.closeConnection();
+  }
+
+  read() {
+
+    let acc = [];
+
+    return new Promise((resolve, reject) => {
+
+      this.db.serialize(() => {
+        this.db.each('SELECT * FROM publishers',
+          (err, row) => !err ? acc.push(row) : reject(err),
+          (err, totalRows) => {
+            !err && acc.length === totalRows ? resolve(acc) : reject(err);
+          });
+      });
+
+      // this.db.closeConnection();
     });
   }
 }
 
-module.exports = CreatePublisherModel;
+module.exports = PublisherModel;
