@@ -1,23 +1,35 @@
 'use strict';
 
 const Messages = require('../../services/messages.js');
-const CreatePublisherModel = require('../../model/publisher/create.js');
+const PublisherModel = require('../../model/publisher/create.js');
 
 class CreatePublisher {
-  async listen() {
-    const message = new Messages();
-    const publisherData = await message.listener('create-publisher');
+
+  get message() {
+    return new Messages();
+  }
+
+  get PublisherModel() {
+    return new PublisherModel();
+  }
+
+  async listenRead() {
+    const publishersData = await this.message.listener('read-publishers');
+    const newPublisher = this.PublisherModel;
+    publisher.read();
+  }
+
+  async listenCreation() {
+    const publisherData = await this.message.listener('create-publisher');
 
     const values = this.serializeData(publisherData);
-    console.log(values);
-    let newPublisher = new CreatePublisherModel();
-    //newPublisher.create(values);
+
+    const newPublisher = this.PublisherModel;
+    newPublisher.create(values);
   }
 
   serializeData(data) {
-    console.log(data);
     return [
-      0,
       data['publisher-name'],
       data['publisher-sex'],
       data['publisher-address'],
@@ -25,7 +37,7 @@ class CreatePublisher {
       data['publisher-email'],
       data['publisher-birthdate'],
       data['publisher-immersion'],
-      data['other-sheep'],
+      !data['other-sheep'],
       !!data['elder'],
       !!data['ministerial-servant'],
       !!data['regular-pionner'],
