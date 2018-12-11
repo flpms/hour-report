@@ -103,7 +103,7 @@ class CreatePublisher extends Component {
             <div className="col">
               <InputContainer attrKey="publisher-immersion"
                               label="Data de Imersão"
-                              placeholder="25/05/02"
+                              placeholder="25/05/2002"
                               onChange={this.handleInputChange.bind(this)}
                               />
             </div>
@@ -113,25 +113,27 @@ class CreatePublisher extends Component {
             <div className="form-group col">
               <p>Ungido ou das Outras Ovelhas</p>
               <div className="form-check form-check-inline">
-                <input className="form-check-input"
+                <input id="anointedOne"
+                        className="form-check-input"
                         type="radio"
                         value="true"
                         name="os"
                         onChange={
                           e => this.handleInputChange.apply(this, ['other-sheep', e.target.value])
                         }/>
-                <label className="form-check-label">Ungido</label>
+                <label className="form-check-label" htmlFor="anointedOne">Ungido</label>
               </div>
 
               <div className="form-check form-check-inline">
-                <input className="form-check-input"
+                <input id="otherSheep"
+                        className="form-check-input"
                         type="radio"
                         value="false"
                         name="os"
                         onChange={
                           e => this.handleInputChange.apply(this, ['other-sheep', e.target.value])
                         }/>
-                <label className="form-check-label">Outras Ovelhas</label>
+                <label className="form-check-label" htmlFor="otherSheep">Outras Ovelhas</label>
               </div>
             </div>
 
@@ -139,36 +141,39 @@ class CreatePublisher extends Component {
               <p>Privilégio de serviço</p>
               <div className="form-group form-check-inline">
                 <div className="custom-control custom-checkbox">
-                  <input className="form-check-input"
+                  <input id="regularPionner"
+                          className="form-check-input"
                           type="checkbox"
                           value="regular-pionner"
                           name="ps"
                           onChange={
                             e => this.handleInputChange.apply(this, ['regular-pionner', e.target.checked])
                           }/>
-                  <label className="form-check-label">Pioneiro Regular</label>
+                  <label className="form-check-label" htmlFor="regularPionner">Pioneiro Regular</label>
                 </div>
 
                 <div className="custom-control custom-checkbox">
-                  <input className="form-check-input"
+                  <input id="ministerialServant"
+                          className="form-check-input"
                           type="checkbox"
                           value="ministerial-servant"
                           name="ps"
                           onChange={
                             e => this.handleInputChange.apply(this, ['ministerial-servant', e.target.checked])
                           }/>
-                  <label className="form-check-label">Servo Ministerial</label>
+                  <label className="form-check-label" htmlFor="ministerialServant">Servo Ministerial</label>
                 </div>
 
                 <div className="custom-control custom-checkbox">
-                  <input className="form-check-input"
+                  <input id="elder"
+                          className="form-check-input"
                           type="checkbox"
                           value="elder"
                           name="ps"
                           onChange={
                             e => this.handleInputChange.apply(this, ['elder', e.target.checked])
                           }/>
-                  <label className="form-check-label">Ancião</label>
+                  <label className="form-check-label" htmlFor="elder">Ancião</label>
                 </div>
               </div>
             </div>
