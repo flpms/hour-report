@@ -8,14 +8,20 @@ class Messages {
     this.ipc = ipcMain;
   }
 
-  listener(key) {
-    return new Promise(resolve => {
-      this.ipc.on(key, (evt, data) => {
-        resolve(JSON.parse(data));
+  listener(key, replier) {
+    const promise = resolve => {
+      this.ipc.on(key, (evt, rawData) => {
+        let resolvedData;
+        const data = rawData ? JSON.parse(rawData) : null;
+
+        resolvedData = !replier ? data : { data: data, evt: evt };
+
+        resolve(resolvedData);
       });
-    });
+    };
+
+    return new Promise(promise);
   }
 }
-
 
 module.exports = Messages;
