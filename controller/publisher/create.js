@@ -14,9 +14,15 @@ class CreatePublisher {
   }
 
   async listenRead() {
-    const publishersData = await this.message.listener('read-publishers');
-    const newPublisher = this.PublisherModel;
-    publisher.read();
+    try {
+      const { evt } = await this.message.listener('read-publishers', true);
+      const newPublisher = this.PublisherModel;
+      const publishers = await newPublisher.read();
+
+      evt.sender.send('read-publishers', publishers);
+    } catch(e) {
+      console.error(e);
+    }
   }
 
   async listenCreation() {
