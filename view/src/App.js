@@ -3,11 +3,13 @@ import './App.css';
 
 import NavBar from './components/navbar/';
 import CreatePublisher from './components/publisher/create/';
+import ListPublishers from './components/publisher/list/';
 
 class App extends Component {
 
   panel = {
     addPublishers: <CreatePublisher />,
+    publishers: <ListPublishers />,
     home: <div>Oi</div>
   }
 
