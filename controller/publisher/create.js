@@ -9,17 +9,18 @@ class CreatePublisher {
     return new Messages();
   }
 
-  get PublisherModel() {
+  get publisherModel() {
     return new PublisherModel();
   }
 
   async listenRead() {
     try {
       const { evt } = await this.message.listener('read-publishers', true);
-      const newPublisher = this.PublisherModel;
-      const publishers = await newPublisher.read();
+      const publishers = await this.publisherModel.read();
 
       evt.sender.send('read-publishers', publishers);
+
+      this.listenRead();
     } catch(e) {
       console.error(e);
     }
@@ -27,11 +28,7 @@ class CreatePublisher {
 
   async listenCreation() {
     const publisherData = await this.message.listener('create-publisher');
-
-    const values = this.serializeData(publisherData);
-
-    const newPublisher = this.PublisherModel;
-    newPublisher.create(values);
+    this.publisherModel.create(this.serializeData(publisherData));
   }
 
   serializeData(data) {
