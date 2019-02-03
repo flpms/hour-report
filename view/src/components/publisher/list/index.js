@@ -9,28 +9,32 @@ class ListPublishers extends Component {
     this.state = {
       publishers: null
     };
-    this.ipc.send('read-publishers');
+    this.sendReadSignal();
   }
 
   componentWillMount() {
     this.listenReadPublishers();
   }
 
+  sendReadSignal() {
+    this.ipc.send('read-publishers');
+  }
+
   listenReadPublishers() {
     this.ipc.on('read-publishers', (evt, publishers) => {
+      console.log('received', publishers);
       this.setState({ publishers: publishers });
     });
   }
 
   render() {
     if (!this.state.publishers) {
+      this.sendReadSignal();
       return (<div>Carregando...</div>);
     }
 
-    let list;
-    //
-    this.state.publishers.forEach((publishers) => {
-      list = <li className="list-group-item">{publishers.name}</li>
+    const list = this.state.publishers.map((publishers, index) => {
+      return <li className="list-group-item" key={index}>{publishers.name}</li>
     });
 
     return (<ul className="list-group">{list}</ul>)
