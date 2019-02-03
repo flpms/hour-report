@@ -19,12 +19,9 @@ function createWindow () {
   win.loadURL('http://localhost:3000');
   win.webContents.openDevTools();
 
-
   win.on('close', () => {
     win = null;
   });
-
-
 }
 
 app.on('ready', createWindow);
